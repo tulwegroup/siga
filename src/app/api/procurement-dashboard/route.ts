@@ -791,10 +791,10 @@ function getQuarterlyTrends() {
       });
     }
     
-    const quarter = quarterlyData.get(quarterKey);
-    quarter.count++;
-    quarter.value += procurement.actualValue;
-    quarter.entities.add(procurement.entityName);
+    const quarterEntry = quarterlyData.get(quarterKey);
+    quarterEntry.count++;
+    quarterEntry.value += procurement.actualValue;
+    quarterEntry.entities.add(procurement.entityName);
   });
   
   return Array.from(quarterlyData.values())
