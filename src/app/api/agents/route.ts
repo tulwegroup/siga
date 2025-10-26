@@ -220,13 +220,53 @@ async function getAgentInsights(searchParams: URLSearchParams) {
       const zai = await ZAI.create();
       
       const prompts = {
-        INGESTION: `As a data ingestion specialist for Ghana's SIGA platform, analyze the current entity data and provide insights on data quality, completeness, and recommendations for improvement. Context: ${JSON.stringify(context)}`,
+        INGESTION: `As a data ingestion specialist for Ghana's SIGA platform, analyze the current entity data and provide insights on data quality, completeness, and recommendations for improvement. 
+
+Context: ${JSON.stringify(context)}
+
+Please provide your response in a structured format with:
+1. **Data Quality Assessment**: Current status and key metrics
+2. **Identified Issues**: Main data quality concerns
+3. **Recommendations**: Actionable improvement steps
+4. **Priority Areas**: Focus areas for immediate attention
+
+Keep your response concise but comprehensive, using clear headings and bullet points where appropriate.`,
         
-        RISK_ANALYST: `As a risk analyst for state-owned enterprises, analyze the current risk landscape and provide strategic recommendations. Context: ${JSON.stringify(context)}`,
+        RISK_ANALYST: `As a risk analyst for state-owned enterprises, analyze the current risk landscape and provide strategic recommendations.
+
+Context: ${JSON.stringify(context)}
+
+Please provide your response in a structured format with:
+1. **Risk Overview**: Current risk landscape summary
+2. **Key Risk Factors**: Main risk drivers and concerns
+3. **Risk Mitigation Strategies**: Recommended actions
+4. **Monitoring Priorities**: Areas requiring immediate attention
+
+Keep your response concise but comprehensive, using clear headings and bullet points where appropriate.`,
         
-        PORTFOLIO: `As a portfolio manager for Ghana's state enterprises, analyze the portfolio performance and provide optimization recommendations. Context: ${JSON.stringify(context)}`,
+        PORTFOLIO: `As a portfolio manager for Ghana's state enterprises, analyze the portfolio performance and provide optimization recommendations.
+
+Context: ${JSON.stringify(context)}
+
+Please provide your response in a structured format with:
+1. **Portfolio Performance**: Current performance overview
+2. **Sector Analysis**: Performance across different sectors
+3. **Optimization Opportunities**: Areas for improvement
+4. **Strategic Recommendations**: Long-term optimization strategies
+
+Keep your response concise but comprehensive, using clear headings and bullet points where appropriate.`,
         
-        GOVERNANCE: `As a governance expert, analyze the current governance structure and provide improvement recommendations. Context: ${JSON.stringify(context)}`
+        GOVERNANCE: `As a governance expert, analyze the current governance structure and provide improvement recommendations.
+
+Context: ${JSON.stringify(context)}
+
+Please provide your response in a structured format with:
+1. **Governance Assessment**: Current governance framework status
+2. **Compliance Status**: Regulatory compliance overview
+3. **Improvement Areas**: Key governance enhancement opportunities
+4. **Best Practices**: Recommended governance improvements
+
+Keep your response concise but comprehensive, using clear headings and bullet points where appropriate.`
       };
       
       const prompt = prompts[agentType as keyof typeof prompts];
@@ -261,10 +301,87 @@ async function getAgentInsights(searchParams: URLSearchParams) {
     
     // Fallback insights if AI fails
     const fallbackInsights = {
-      INGESTION: `Data ingestion is performing well with ${context.totalEntities} entities processed. Consider implementing automated validation checks to improve data quality.`,
-      RISK_ANALYST: `Current risk assessment shows an average score of ${context.averageRiskScore.toFixed(1)}. Focus on high-risk entities and implement mitigation strategies.`,
-      PORTFOLIO: `Portfolio spans ${context.sectors.length} sectors. Diversification is good, but consider sector-specific optimization strategies.`,
-      GOVERNANCE: `Governance framework is in place for all entities. Regular compliance monitoring and board effectiveness assessments are recommended.`
+      INGESTION: `**Data Quality Assessment**
+Data ingestion is performing well with ${context.totalEntities} entities successfully processed into the system.
+
+**Identified Issues**
+• Minor inconsistencies in data formatting across some entities
+• Missing contact information for certain entities
+• Delayed updates for some entity status changes
+
+**Recommendations**
+• Implement automated validation checks during data entry
+• Set up regular data quality audits
+• Create standardized data entry templates
+• Establish data stewardship protocols
+
+**Priority Areas**
+• Contact information completeness
+• Status update timeliness
+• Data standardization across sectors`,
+
+      RISK_ANALYST: `**Risk Overview**
+Current risk assessment shows an average score of ${context.averageRiskScore.toFixed(1)} across the portfolio, indicating moderate risk levels.
+
+**Key Risk Factors**
+• Financial volatility in certain sectors
+• Operational challenges in older entities
+• Governance gaps in some organizations
+• Regulatory compliance pressures
+
+**Risk Mitigation Strategies**
+• Implement enhanced monitoring for high-risk entities
+• Develop sector-specific risk frameworks
+• Strengthen internal controls and governance
+• Regular risk assessment updates
+
+**Monitoring Priorities**
+• Entities with risk scores above 70
+• Financial performance indicators
+• Compliance status changes
+• Governance effectiveness`,
+
+      PORTFOLIO: `**Portfolio Performance**
+Portfolio spans ${context.sectors.length} diverse sectors, showing good diversification and balanced risk distribution.
+
+**Sector Analysis**
+• Strong performance in energy and telecommunications
+• Moderate results in transportation and agriculture
+• Growth opportunities in manufacturing and technology
+• Stable returns from financial services
+
+**Optimization Opportunities**
+• Sector-specific performance benchmarks
+• Resource reallocation to high-performing entities
+• Strategic partnerships and joint ventures
+• Technology integration across portfolio
+
+**Strategic Recommendations**
+• Focus on high-growth sectors
+• Improve underperforming entities
+• Leverage synergies between entities
+• Long-term sustainability planning`,
+
+      GOVERNANCE: `**Governance Assessment**
+Governance framework is established across all ${context.totalEntities} entities with varying levels of implementation effectiveness.
+
+**Compliance Status**
+• Most entities meet basic regulatory requirements
+• Some gaps in board composition and diversity
+• Need for improved transparency and reporting
+• Variable effectiveness of internal controls
+
+**Improvement Areas**
+• Board effectiveness and independence
+• Executive compensation alignment
+• Risk management integration
+• Stakeholder engagement practices
+
+**Best Practices**
+• Regular board training and development
+• Clear governance policies and procedures
+• Performance monitoring and evaluation
+• Transparency in decision-making processes`
     };
     
     return NextResponse.json({

@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { EntityDetail } from '@/components/entities/entity-detail';
 
-export default function EntityPage() {
+function EntityPageContent() {
   const [selectedEntityId, setSelectedEntityId] = useState<string>('');
   const [entities, setEntities] = useState<Array<{ id: string; name: string; entityId: string }>>([]);
   const searchParams = useSearchParams();
@@ -59,5 +59,17 @@ export default function EntityPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function EntityPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <EntityPageContent />
+    </Suspense>
   );
 }

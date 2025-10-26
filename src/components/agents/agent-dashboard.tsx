@@ -484,8 +484,45 @@ export function AgentDashboard({ className }: AgentDashboardProps) {
                     </Button>
                     
                     {insights[agent.agentType] && (
-                      <div className="p-4 bg-muted rounded-lg">
-                        <p className="text-sm">{insights[agent.agentType]}</p>
+                      <div className="space-y-3">
+                        <div className="p-4 bg-muted rounded-lg">
+                          <div className="prose prose-sm max-w-none">
+                            {insights[agent.agentType].split('\n').map((paragraph, index) => {
+                              // Handle bold headings
+                              if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                                return (
+                                  <h4 key={index} className="text-sm font-semibold mb-2 text-primary">
+                                    {paragraph.replace(/\*\*/g, '')}
+                                  </h4>
+                                );
+                              }
+                              // Handle bullet points
+                              if (paragraph.startsWith('•')) {
+                                return (
+                                  <li key={index} className="text-sm mb-1 ml-4 list-disc">
+                                    {paragraph.substring(1).trim()}
+                                  </li>
+                                );
+                              }
+                              // Handle regular paragraphs
+                              if (paragraph.trim()) {
+                                return (
+                                  <p key={index} className="text-sm mb-2 last:mb-0 leading-relaxed">
+                                    {paragraph}
+                                  </p>
+                                );
+                              }
+                              return null;
+                            })}
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between text-xs text-muted-foreground">
+                          <div className="flex items-center gap-1">
+                            <Brain className="h-3 w-3" />
+                            <span>AI-Generated Insights</span>
+                          </div>
+                          <span>{new Date().toLocaleTimeString()}</span>
+                        </div>
                       </div>
                     )}
                   </div>
