@@ -1,5 +1,48 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { GHANA_ENTITIES } from '@/data/ghana-entities';
+
+// Create entity from actual Ghana entities data
+const createEntityFromRealData = (entityId: string) => {
+  const realEntity = GHANA_ENTITIES.find(entity => entity.entityId === entityId);
+  
+  if (realEntity) {
+    return {
+      id: realEntity.entityId,
+      name: realEntity.name,
+      type: realEntity.category,
+      sector: realEntity.sector,
+      status: realEntity.status,
+      establishedYear: realEntity.establishedDate?.getFullYear() || 2000,
+      description: realEntity.description,
+      website: realEntity.website?.replace('https://', '') || '',
+      headquarters: "Accra, Ghana",
+      ceo: "Chief Executive Officer",
+      boardMembers: [
+        { 
+          id: `bm-${entityId}-1`, 
+          name: "Board Chairman", 
+          position: "Chairman", 
+          appointedDate: "2020-01-15" 
+        },
+        { 
+          id: `bm-${entityId}-2`, 
+          name: "Board Member", 
+          position: "Board Member", 
+          appointedDate: "2021-03-20" 
+        }
+      ],
+      riskScores: [],
+      complianceLogs: [],
+      kpiData: [],
+      dividends: [],
+      guarantees: []
+    };
+  }
+  
+  // Fallback for entities not found in real data
+  return createGenericEntity(entityId);
+};
 
 // Create a generic entity based on ID pattern
 const createGenericEntity = (entityId: string) => {
@@ -431,9 +474,9 @@ export async function GET(
       const fallbackData = getFallbackEntityData();
       entity = fallbackData[params.id as keyof typeof fallbackData];
       
-      // If still not found, create a generic entity based on the ID
+      // If still not found, create entity from real data or generic
       if (!entity) {
-        entity = createGenericEntity(params.id);
+        entity = createEntityFromRealData(params.id);
       }
     }
 
