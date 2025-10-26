@@ -72,10 +72,16 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
+<<<<<<< HEAD
       const timestamp = Date.now();
       const [entitiesRes, dashboardRes] = await Promise.all([
         fetch(`/api/entities?t=${timestamp}`),
         fetch(`/api/dashboard?t=${timestamp}`)
+=======
+      const [entitiesRes, dashboardRes] = await Promise.all([
+        fetch('/api/entities'),
+        fetch('/api/dashboard')
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
       ]);
 
       if (!entitiesRes.ok || !dashboardRes.ok) {
@@ -85,7 +91,10 @@ export default function Home() {
       const entitiesData = await entitiesRes.json();
       const dashboardData = await dashboardRes.json();
 
+<<<<<<< HEAD
       console.log('Dashboard data received:', dashboardData.portfolio);
+=======
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
       setEntities(entitiesData);
       setDashboardData(dashboardData);
     } catch (error) {
@@ -146,6 +155,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
+<<<<<<< HEAD
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => fetchData()}
@@ -157,6 +167,11 @@ export default function Home() {
                 {entities.length} Entities Monitored
               </Badge>
             </div>
+=======
+            <Badge variant="outline" className="text-sm">
+              {entities.length} Entities Monitored
+            </Badge>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
           </div>
         </div>
       </header>
@@ -189,11 +204,14 @@ export default function Home() {
               <p className="text-xs text-muted-foreground">
                 Total state assets
               </p>
+<<<<<<< HEAD
               {dashboardData && (
                 <p className="text-xs text-gray-500 mt-1">
                   Raw: GHS {dashboardData.portfolio.totalAssets.toLocaleString()}
                 </p>
               )}
+=======
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
             </CardContent>
           </Card>
 

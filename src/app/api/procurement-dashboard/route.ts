@@ -335,6 +335,7 @@ function getRiskDistribution() {
 }
 
 function getMonthlyTrends() {
+<<<<<<< HEAD
   // Generate monthly trends for 2025 (January to October)
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
   const monthlyData = [];
@@ -356,6 +357,34 @@ function getMonthlyTrends() {
   });
   
   return monthlyData;
+=======
+  const monthlyData = new Map();
+  
+  COMPREHENSIVE_PROCUREMENT_DATA.forEach(procurement => {
+    const monthKey = `${procurement.contractAwardDate.getFullYear()}-${String(procurement.contractAwardDate.getMonth() + 1).padStart(2, '0')}`;
+    
+    if (!monthlyData.has(monthKey)) {
+      monthlyData.set(monthKey, {
+        month: monthKey,
+        count: 0,
+        value: 0,
+        entities: new Set()
+      });
+    }
+    
+    const month = monthlyData.get(monthKey);
+    month.count++;
+    month.value += procurement.actualValue;
+    month.entities.add(procurement.entityName);
+  });
+  
+  return Array.from(monthlyData.values())
+    .map(month => ({
+      ...month,
+      entities: Array.from(month.entities)
+    }))
+    .sort((a, b) => a.month.localeCompare(b.month));
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
 }
 
 function getCategoryBreakdown() {

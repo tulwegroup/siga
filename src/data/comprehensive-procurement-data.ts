@@ -1339,6 +1339,7 @@ export const CONFLICT_DETECTIONS: ConflictDetection[] = [
 
 // PPA-specific analysis data
 export const PPA_ANALYTICS = {
+<<<<<<< HEAD
   totalProcurements: 142,
   totalValue: 3850000000,
   averageValue: 27112676,
@@ -1387,6 +1388,54 @@ export const PPA_ANALYTICS = {
     { name: "Agricultural Equipment Suppliers", contracts: 9, totalValue: 98000000, complianceScore: 83.4, riskLevel: "MEDIUM" },
     { name: "Educational Resources Ltd", contracts: 11, totalValue: 76000000, complianceScore: 89.1, riskLevel: "LOW" },
     { name: "Transportation Services Ghana", contracts: 7, totalValue: 68000000, complianceScore: 86.5, riskLevel: "MEDIUM" }
+=======
+  totalProcurements: 12,
+  totalValue: 425300000,
+  averageValue: 35441667,
+  complianceRate: 85.5,
+  localContentAverage: 58.3,
+  smeParticipationRate: 41.7,
+  womenOwnedParticipation: 25.0,
+  youthOwnedParticipation: 16.7,
+  riskDistribution: {
+    LOW: 5,
+    MEDIUM: 5,
+    HIGH: 2,
+    CRITICAL: 0
+  },
+  categoryDistribution: {
+    GOODS: 2,
+    SERVICES: 6,
+    WORKS: 2,
+    CONSULTANCY: 2
+  },
+  methodDistribution: {
+    OPEN_TENDER: 4,
+    RESTRICTED_TENDER: 4,
+    DIRECT_PROCUREMENT: 1,
+    SOLE_SOURCING: 1,
+    TWO_STAGE_TENDER: 2
+  },
+  monthlyTrends: [
+    { month: "Jan", count: 1, value: 24500000 },
+    { month: "Feb", count: 1, value: 48500000 },
+    { month: "Mar", count: 1, value: 8200000 },
+    { month: "Apr", count: 1, value: 118000000 },
+    { month: "May", count: 1, value: 17500000 },
+    { month: "Jun", count: 1, value: 13200000 },
+    { month: "Jul", count: 1, value: 820000 },
+    { month: "Aug", count: 1, value: 68000000 },
+    { month: "Sep", count: 1, value: 14800000 },
+    { month: "Oct", count: 1, value: 3100000 },
+    { month: "Nov", count: 1, value: 8800000 }
+  ],
+  topSuppliers: [
+    { name: "TechHub Ghana Ltd", contracts: 1, value: 5800000 },
+    { name: "African Transformers Ltd", contracts: 1, value: 17500000 },
+    { name: "China State Construction", contracts: 1, value: 118000000 },
+    { name: "Renewable Energy Systems Ltd", contracts: 1, value: 68000000 },
+    { name: "Siemens Ghana Ltd", contracts: 1, value: 14800000 }
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
   ],
   sustainabilityMetrics: {
     averageScore: 85.8,

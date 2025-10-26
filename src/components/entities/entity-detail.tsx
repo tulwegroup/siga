@@ -166,8 +166,13 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
     );
   }
 
+<<<<<<< HEAD
   const latestRiskScore = entity.riskScores?.[0];
   const latestKpi = entity.kpiData?.[0];
+=======
+  const latestRiskScore = entity.riskScores[0];
+  const latestKpi = entity.kpiData[0];
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
 
   return (
     <div className="min-h-screen bg-background">
@@ -248,9 +253,13 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
+<<<<<<< HEAD
                 {entity.complianceLogs?.length > 0 
                   ? Math.round((entity.complianceLogs.filter(log => log.status === 'COMPLIANT').length / entity.complianceLogs.length) * 100)
                   : 0}%
+=======
+                {Math.round((entity.complianceLogs.filter(log => log.status === 'COMPLIANT').length / entity.complianceLogs.length) * 100)}%
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
               </div>
               <p className="text-xs text-muted-foreground">
                 Compliance rate
@@ -281,11 +290,18 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
+<<<<<<< HEAD
                     {entity.description ? (
                       <p className="text-sm text-muted-foreground">{entity.description}</p>
                     ) : (
                       <p className="text-sm text-muted-foreground italic">No description available</p>
                     )}
+=======
+                    <div>
+                      <h4 className="font-semibold mb-2">Description</h4>
+                      <p className="text-sm text-muted-foreground">{entity.description}</p>
+                    </div>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                     <div>
                       <h4 className="font-semibold mb-2">Contact Information</h4>
                       <div className="space-y-2">
@@ -464,6 +480,7 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
+<<<<<<< HEAD
                     {entity.boardMembers?.length > 0 ? (
                       entity.boardMembers.map((member) => (
                         <div key={member.id} className="flex items-center justify-between p-3 border rounded-lg">
@@ -472,6 +489,15 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
                             <div>
                               <div className="flex items-center gap-2">
                                 <h4 className="font-semibold">{member.name}</h4>
+=======
+                    {entity.boardMembers.map((member) => (
+                      <div key={member.id} className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <User className="h-5 w-5 text-muted-foreground" />
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-semibold">{member.name}</h4>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                               {member.isChairperson && (
                                 <Badge variant="default">Chairperson</Badge>
                               )}
@@ -490,6 +516,7 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
                           )}
                         </div>
                       </div>
+<<<<<<< HEAD
                     ))
                     ) : (
                       <div className="text-center py-8 text-muted-foreground">
@@ -497,6 +524,9 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
                         <p>No board members information available</p>
                       </div>
                     )}
+=======
+                    ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                   </div>
                 </CardContent>
               </Card>
@@ -549,6 +579,7 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
+<<<<<<< HEAD
                   {entity.complianceLogs?.length > 0 ? (
                     entity.complianceLogs.map((log) => (
                       <div key={log.id} className="flex items-center justify-between p-4 border rounded-lg">
@@ -578,6 +609,30 @@ export function EntityDetail({ entityId }: EntityDetailProps) {
                       <p>No compliance data available</p>
                     </div>
                   )}
+=======
+                  {entity.complianceLogs.map((log) => (
+                    <div key={log.id} className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="font-semibold">{log.requirement}</h4>
+                          <Badge className={getComplianceColor(log.status)}>
+                            {log.status.replace('_', ' ')}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-4 w-4" />
+                            Due: {new Date(log.dueDate).toLocaleDateString()}
+                          </span>
+                          <span>Assigned to: {log.assignedTo}</span>
+                        </div>
+                        {log.notes && (
+                          <p className="text-sm text-muted-foreground mt-2">{log.notes}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                 </div>
               </CardContent>
             </Card>

@@ -287,21 +287,35 @@ export function ComprehensiveProcurementDashboard() {
   const runAIAnalysis = async () => {
     try {
       setAiLoading(true);
+<<<<<<< HEAD
       const response = await fetch('/api/ai-analysis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           analysisType: 'comprehensive',
           filters: filters
+=======
+      const response = await fetch('/api/procurement-agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'comprehensive-analysis',
+          procurements: procurements.slice(0, 5), // Analyze top 5 for demo
+          analytics: analytics
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
         })
       });
       
       const data = await response.json();
+<<<<<<< HEAD
       if (data.success) {
         setAiAnalysis(data.data);
       } else {
         console.error('AI analysis failed:', data.message);
       }
+=======
+      setAiAnalysis(data.analysis);
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
     } catch (error) {
       console.error('Error running AI analysis:', error);
     } finally {
@@ -309,10 +323,14 @@ export function ComprehensiveProcurementDashboard() {
     }
   };
 
+<<<<<<< HEAD
   const formatCurrency = (amount: number | undefined | null, currency: string = 'GHS') => {
     if (amount === undefined || amount === null || isNaN(amount)) {
       return `${currency} 0`;
     }
+=======
+  const formatCurrency = (amount: number, currency: string = 'GHS') => {
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
     if (amount >= 1000000000) {
       return `${currency} ${(amount / 1000000000).toFixed(2)}B`;
     } else if (amount >= 1000000) {
@@ -425,7 +443,11 @@ export function ComprehensiveProcurementDashboard() {
           <CardContent>
             <div className="text-2xl font-bold">{analytics?.totalProcurements || 0}</div>
             <p className="text-xs text-muted-foreground">
+<<<<<<< HEAD
               Jan - Oct 2025
+=======
+              Jan - Nov 2024
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
             </p>
           </CardContent>
         </Card>
@@ -465,7 +487,11 @@ export function ComprehensiveProcurementDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">
+<<<<<<< HEAD
               {analytics && formatCurrency((analytics.totalValue || 0) * 0.067)} {/* Estimated 6.7% savings */}
+=======
+              {analytics && formatCurrency(analytics.totalValue * 0.067)} {/* Estimated 6.7% savings */}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
             </div>
             <p className="text-xs text-muted-foreground">
               Estimated savings rate
@@ -522,7 +548,11 @@ export function ComprehensiveProcurementDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">
+<<<<<<< HEAD
               {analytics?.sustainabilityMetrics?.totalLocalJobsCreated || 845}
+=======
+              {analytics?.sustainabilityMetrics?.totalLocalJobsCreated || 0}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
             </div>
             <p className="text-xs text-muted-foreground">
               Local jobs created
@@ -602,11 +632,19 @@ export function ComprehensiveProcurementDashboard() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Time</SelectItem>
+<<<<<<< HEAD
                   <SelectItem value="2025">2025</SelectItem>
                   <SelectItem value="2025-Q1">Q1 2025</SelectItem>
                   <SelectItem value="2025-Q2">Q2 2025</SelectItem>
                   <SelectItem value="2025-Q3">Q3 2025</SelectItem>
                   <SelectItem value="2025-Q4">Q4 2025</SelectItem>
+=======
+                  <SelectItem value="2024">2024</SelectItem>
+                  <SelectItem value="2024-Q1">Q1 2024</SelectItem>
+                  <SelectItem value="2024-Q2">Q2 2024</SelectItem>
+                  <SelectItem value="2024-Q3">Q3 2024</SelectItem>
+                  <SelectItem value="2024-Q4">Q4 2024</SelectItem>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                 </SelectContent>
               </Select>
             </div>
@@ -746,9 +784,15 @@ export function ComprehensiveProcurementDashboard() {
                 {analytics?.monthlyTrends?.map((trend) => (
                   <div key={trend.month} className="p-4 border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
+<<<<<<< HEAD
                       <span className="font-medium">{trend.month} 2025</span>
                       <span className="text-sm text-muted-foreground">
                         {trend.count} procurements • {formatCurrency(trend.value || 0)}
+=======
+                      <span className="font-medium">{trend.month} 2024</span>
+                      <span className="text-sm text-muted-foreground">
+                        {trend.count} procurements • {formatCurrency(trend.value)}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                       </span>
                     </div>
                   </div>
@@ -794,7 +838,11 @@ export function ComprehensiveProcurementDashboard() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
                         <span className="text-muted-foreground">Value:</span>
+<<<<<<< HEAD
                         <p className="font-medium">{formatCurrency(procurement.actualValue || 0, procurement.currency)}</p>
+=======
+                        <p className="font-medium">{formatCurrency(procurement.actualValue, procurement.currency)}</p>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                       </div>
                       <div>
                         <span className="text-muted-foreground">Category:</span>
@@ -831,6 +879,7 @@ export function ComprehensiveProcurementDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
+<<<<<<< HEAD
                   {analytics && Object.entries(analytics.methodDistribution || {}).map(([method, count]) => {
                     const methodValue = (analytics.totalValue || 0) * (count / (analytics.totalProcurements || 1));
                     return (
@@ -845,6 +894,19 @@ export function ComprehensiveProcurementDashboard() {
                       </div>
                     );
                   })}
+=======
+                  {analytics && Object.entries(analytics.methodBreakdown).map(([method, data]) => (
+                    <div key={method} className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">{method.replace('_', ' ')}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {data.count} items • {formatCurrency(data.value)}
+                        </span>
+                      </div>
+                      <Progress value={(data.value / analytics.overview.totalValue) * 100} className="h-2" />
+                    </div>
+                  ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                 </div>
               </CardContent>
             </Card>
@@ -862,6 +924,7 @@ export function ComprehensiveProcurementDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
+<<<<<<< HEAD
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-4 border rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
@@ -900,6 +963,20 @@ export function ComprehensiveProcurementDashboard() {
                       </div>
                     </div>
                   </div>
+=======
+                  {analytics?.complianceAnalysis.commonViolations.map((violation, idx) => (
+                    <div key={idx} className="p-3 border rounded-lg">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-medium text-sm">{violation.type}</span>
+                        <Badge variant={violation.severity === 'HIGH' ? 'destructive' : 'secondary'}>
+                          {violation.severity}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground mb-1">{violation.description}</p>
+                      <p className="text-xs">Occurrences: {violation.count}</p>
+                    </div>
+                  ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                 </div>
               </CardContent>
             </Card>
@@ -965,6 +1042,7 @@ export function ComprehensiveProcurementDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
+<<<<<<< HEAD
                   <div className="p-3 border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-medium text-sm">Documentation Process</span>
@@ -1015,6 +1093,27 @@ export function ComprehensiveProcurementDashboard() {
                       </ul>
                     </div>
                   </div>
+=======
+                  {analytics?.complianceAnalysis.improvementAreas.map((area, idx) => (
+                    <div key={idx} className="p-3 border rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-sm">{area.area}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {area.currentScore}% → {area.targetScore}%
+                        </span>
+                      </div>
+                      <Progress value={(area.currentScore / area.targetScore) * 100} className="h-2 mb-2" />
+                      <div className="text-xs text-muted-foreground">
+                        <p className="font-medium mb-1">Recommendations:</p>
+                        <ul className="list-disc list-inside space-y-1">
+                          {area.recommendations.slice(0, 2).map((rec, recIdx) => (
+                            <li key={recIdx}>{rec}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                 </div>
               </CardContent>
             </Card>
@@ -1063,6 +1162,7 @@ export function ComprehensiveProcurementDashboard() {
                       </div>
                     </div>
                     
+<<<<<<< HEAD
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="p-3 border rounded-lg">
                         <h5 className="font-medium mb-2">Compliance Score</h5>
@@ -1085,6 +1185,21 @@ export function ComprehensiveProcurementDashboard() {
                           {aiAnalysis.overallHealth?.status || 'Unknown'}
                         </div>
                       </div>
+=======
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="p-3 border rounded-lg">
+                        <h5 className="font-medium mb-2">Compliance Score</h5>
+                        <div className="text-2xl font-bold text-green-600">
+                          {aiAnalysis.complianceCheck.overallScore}%
+                        </div>
+                      </div>
+                      <div className="p-3 border rounded-lg">
+                        <h5 className="font-medium mb-2">Risk Assessment</h5>
+                        <Badge className={getRiskColor(aiAnalysis.riskAssessment.overallRisk)}>
+                          {aiAnalysis.riskAssessment.overallRisk}
+                        </Badge>
+                      </div>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                     </div>
                   </div>
                 </CardContent>
@@ -1103,7 +1218,11 @@ export function ComprehensiveProcurementDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
+<<<<<<< HEAD
                     {aiAnalysis.compliance?.violations?.map((violation, idx) => (
+=======
+                    {aiAnalysis.complianceCheck.violations.map((violation, idx) => (
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                       <div key={idx} className="p-3 border rounded-lg">
                         <div className="flex items-start justify-between mb-2">
                           <span className="font-medium text-sm">{violation.type}</span>
@@ -1114,8 +1233,16 @@ export function ComprehensiveProcurementDashboard() {
                         <p className="text-sm text-muted-foreground mb-2">{violation.description}</p>
                         <p className="text-sm font-medium text-blue-600 mb-1">Recommendation:</p>
                         <p className="text-sm text-muted-foreground">{violation.recommendation}</p>
+<<<<<<< HEAD
                       </div>
                     )) || <p className="text-muted-foreground">No violations detected</p>}
+=======
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Reference: {violation.regulatoryReference}
+                        </p>
+                      </div>
+                    ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                   </div>
                 </CardContent>
               </Card>
@@ -1133,6 +1260,7 @@ export function ComprehensiveProcurementDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
+<<<<<<< HEAD
                     {aiAnalysis.recommendations?.map((recommendation, idx) => (
                       <div key={idx} className="p-3 border rounded-lg">
                         <div className="flex items-start justify-between mb-2">
@@ -1146,6 +1274,22 @@ export function ComprehensiveProcurementDashboard() {
                         <p className="text-sm text-muted-foreground">{recommendation.impact}</p>
                       </div>
                     )) || <p className="text-muted-foreground">No specific recommendations at this time</p>}
+=======
+                    {aiAnalysis.report.actionItems.map((action, idx) => (
+                      <div key={idx} className="p-3 border rounded-lg">
+                        <div className="flex items-start justify-between mb-2">
+                          <span className="font-medium text-sm">{action.action}</span>
+                          <Badge variant={action.priority === 'HIGH' ? 'destructive' : 'secondary'}>
+                            {action.priority}
+                          </Badge>
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          <p>Deadline: {action.deadline}</p>
+                          <p>Responsible: {action.responsible}</p>
+                        </div>
+                      </div>
+                    ))}
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                   </div>
                 </CardContent>
               </Card>
@@ -1254,7 +1398,11 @@ export function ComprehensiveProcurementDashboard() {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Actual Value:</span>
+<<<<<<< HEAD
                       <span>{formatCurrency(selectedProcurement.actualValue || 0, selectedProcurement.currency)}</span>
+=======
+                      <span>{formatCurrency(selectedProcurement.actualValue, selectedProcurement.currency)}</span>
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Contract Award Date:</span>

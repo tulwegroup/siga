@@ -583,6 +583,7 @@ export async function GET(
       entity.complianceLogs = mockComplianceLogs;
     }
 
+<<<<<<< HEAD
     // Transform the data to match component expectations
     const transformedEntity = {
       id: entity.id,
@@ -668,12 +669,16 @@ export async function GET(
     };
 
     return NextResponse.json(transformedEntity);
+=======
+    return NextResponse.json(entity);
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
   } catch (error) {
     console.error('Error fetching entity details:', error);
     
     // Final fallback - return a basic entity structure
     return NextResponse.json({
       id: params.id,
+<<<<<<< HEAD
       entityId: params.id,
       name: 'Entity Data Unavailable',
       category: 'UNKNOWN',
@@ -685,6 +690,17 @@ export async function GET(
       website: '',
       description: 'Unable to load entity details due to server limitations',
       establishedDate: '2000-01-01',
+=======
+      name: 'Entity Data Unavailable',
+      type: 'UNKNOWN',
+      sector: 'Unknown',
+      status: 'ERROR',
+      establishedYear: 2000,
+      description: 'Unable to load entity details due to server limitations',
+      website: '',
+      headquarters: '',
+      ceo: '',
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
       boardMembers: [],
       riskScores: [],
       complianceLogs: [],

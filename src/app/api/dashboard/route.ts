@@ -108,11 +108,19 @@ function getInMemoryDashboardData() {
       nonCompliant: 5
     },
     portfolio: {
+<<<<<<< HEAD
       totalAssets: 62000000000, // GHS 62 billion - realistic estimate for 175 Ghana SOEs
       totalRevenue: 12500000000, // GHS 12.5 billion
       totalEmployees: 180000, // 180K employees
       dividendOwed: 450000000, // GHS 450 million
       guaranteesOutstanding: 2800000000 // GHS 2.8 billion
+=======
+      totalAssets: 45600000000,
+      totalRevenue: 8900000000,
+      totalEmployees: 125000,
+      dividendOwed: 340000000,
+      guaranteesOutstanding: 2100000000
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
     }
   };
 }
@@ -147,6 +155,7 @@ export async function GET() {
 
       const totalEntities = await db.entity.count();
 
+<<<<<<< HEAD
       // Calculate actual portfolio metrics from database
       const latestKpiData = await db.kpiData.findMany({
         where: {
@@ -227,6 +236,8 @@ export async function GET() {
         totalGuarantees = estimatedGuarantees;
       }
 
+=======
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
       const dashboardData = {
         overview: {
           totalEntities,
@@ -247,11 +258,19 @@ export async function GET() {
           nonCompliant: 5
         },
         portfolio: {
+<<<<<<< HEAD
           totalAssets,
           totalRevenue,
           totalEmployees,
           dividendOwed: totalDividendsOwed,
           guaranteesOutstanding: totalGuarantees
+=======
+          totalAssets: 45600000000,
+          totalRevenue: 8900000000,
+          totalEmployees: 125000,
+          dividendOwed: 340000000,
+          guaranteesOutstanding: 2100000000
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
         }
       };
 
@@ -264,6 +283,7 @@ export async function GET() {
     }
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
+<<<<<<< HEAD
     // Final fallback to in-memory data with realistic estimates
     const dashboardData = {
       overview: {
@@ -307,6 +327,10 @@ export async function GET() {
         guaranteesOutstanding: 2800000000
       }
     };
+=======
+    // Final fallback to in-memory data
+    const dashboardData = getInMemoryDashboardData();
+>>>>>>> 952c16ea3623257febc847259d233181aaff0ada
     return NextResponse.json(dashboardData);
   }
 }
