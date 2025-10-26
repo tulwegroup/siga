@@ -1281,6 +1281,7 @@ export function ComprehensiveProcurementDashboard() {
                     ))}
                   </div>
                 </div>
+              )}
             </div>
           </div>
         </div>

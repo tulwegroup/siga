@@ -19,7 +19,7 @@ import {
   Lightbulb,
   RefreshCw
 } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 interface Agent {
   agentType: string;
@@ -240,15 +240,13 @@ export function AgentDashboard({ className }: AgentDashboardProps) {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={agents}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="successRate" fill="#2563eb" />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="h-64 flex items-center justify-center text-muted-foreground">
+                  <div className="text-center">
+                    <BarChart3 className="h-8 w-8 mx-auto mb-2" />
+                    <p>Agent Performance Chart</p>
+                    <p className="text-xs">Chart temporarily disabled for build</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
