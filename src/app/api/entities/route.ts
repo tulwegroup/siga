@@ -61,7 +61,7 @@ export async function GET() {
       console.error('Database query failed, using in-memory data:', dbError);
       // Fallback to in-memory data
       const entitiesWithIds = ALL_GHANA_ENTITIES.map((entity, index) => ({
-        id: `memory-${index}`,
+        id: entity.entityId, // Use the actual entity ID instead of memory index
         entityId: entity.entityId,
         name: entity.name,
         category: entity.category,
@@ -84,7 +84,7 @@ export async function GET() {
     console.error('Error fetching entities:', error);
     // Final fallback to in-memory data
     const entitiesWithIds = ALL_GHANA_ENTITIES.map((entity, index) => ({
-      id: `memory-${index}`,
+      id: entity.entityId, // Use the actual entity ID instead of memory index
       entityId: entity.entityId,
       name: entity.name,
       category: entity.category,
