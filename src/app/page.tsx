@@ -7,6 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { AgentDashboard } from '@/components/agents/agent-dashboard';
 import { EntityTable } from '@/components/entities/entity-table';
+import { SoftwareRationalization } from '@/components/software/software-rationalization';
+import { DataCenterOptimization } from '@/components/datacenter/data-center-optimization';
+import { ProcurementAnalysis } from '@/components/procurement/procurement-analysis';
 import { 
   Building2, 
   TrendingUp, 
@@ -210,9 +213,12 @@ export default function Home() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-8">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="entities">Entities</TabsTrigger>
+            <TabsTrigger value="software">Software</TabsTrigger>
+            <TabsTrigger value="infrastructure">Infrastructure</TabsTrigger>
+            <TabsTrigger value="procurement">Procurement</TabsTrigger>
             <TabsTrigger value="risk">Risk Analysis</TabsTrigger>
             <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
             <TabsTrigger value="agents">AI Agents</TabsTrigger>
@@ -270,6 +276,18 @@ export default function Home() {
 
           <TabsContent value="entities" className="space-y-6">
             <EntityTable entities={entities} onEntityClick={handleEntityClick} />
+          </TabsContent>
+
+          <TabsContent value="software" className="space-y-6">
+            <SoftwareRationalization />
+          </TabsContent>
+
+          <TabsContent value="infrastructure" className="space-y-6">
+            <DataCenterOptimization />
+          </TabsContent>
+
+          <TabsContent value="procurement" className="space-y-6">
+            <ProcurementAnalysis />
           </TabsContent>
 
           <TabsContent value="risk" className="space-y-6">
