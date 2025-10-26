@@ -58,7 +58,7 @@ export interface SoftwareLicense {
 export interface EnhancedEntity {
   entityId: string;
   name: string;
-  category: 'SOE' | 'JVC' | 'OSE';
+  category: 'SOE' | 'JVC' | 'OSE' | 'REGULATORY';
   sector: string;
   parentMinistry: string;
   status: 'ACTIVE' | 'INACTIVE' | 'UNDER_RESTRUCTURING' | 'DISSOLVED';
@@ -80,6 +80,221 @@ export interface EnhancedEntity {
 }
 
 export const ENHANCED_GHANA_ENTITIES: EnhancedEntity[] = [
+  // REGULATORY BODIES - Enhanced with comprehensive data
+  {
+    entityId: "REG-001",
+    name: "Public Procurement Authority",
+    category: "REGULATORY",
+    sector: "Governance",
+    parentMinistry: "Office of the President",
+    status: "ACTIVE",
+    contactEmail: "info@ppa.gov.gh",
+    contactPhone: "+233-302-762151",
+    website: "https://www.ppa.gov.gh",
+    address: "P.O. Box CT 5273, Cantonments, Accra, Ghana",
+    description: "Regulatory body overseeing public procurement in Ghana",
+    establishedDate: new Date("2003-01-01"),
+    employeeCount: 350,
+    revenue: 45000000,
+    assets: 120000000,
+    
+    boardMembers: [
+      {
+        name: "Prof. Margaret Mensah",
+        position: "Board Chairman",
+        appointmentDate: new Date("2021-01-15"),
+        termEndDate: new Date("2024-01-15"),
+        isChairperson: true,
+        email: "m.mensah@ppa.gov.gh",
+        phone: "+233-244-123456",
+        qualifications: "PhD Law, LLM Procurement Law",
+        experience: "25 years in public procurement and governance"
+      },
+      {
+        name: "Kwame Asante",
+        position: "Executive Director",
+        appointmentDate: new Date("2022-03-01"),
+        termEndDate: new Date("2025-03-01"),
+        isChairperson: false,
+        email: "k.asante@ppa.gov.gh",
+        qualifications: "MBA, BSc Administration",
+        experience: "18 years in public sector management"
+      },
+      {
+        name: "Ama Osei",
+        position: "Board Member - Legal",
+        appointmentDate: new Date("2021-06-15"),
+        termEndDate: new Date("2024-06-15"),
+        isChairperson: false,
+        email: "a.osei@ppa.gov.gh",
+        qualifications: "LLB, BL Procurement Law Specialist",
+        experience: "15 years in procurement law"
+      },
+      {
+        name: "Dr. Yaw Boateng",
+        position: "Board Member - Technical",
+        appointmentDate: new Date("2022-01-20"),
+        termEndDate: new Date("2025-01-20"),
+        isChairperson: false,
+        email: "y.boateng@ppa.gov.gh",
+        qualifications: "PhD Economics, MSc Public Policy",
+        experience: "20 years in economic analysis and policy"
+      },
+      {
+        name: "Adwoa Frempong",
+        position: "Board Member - Civil Society",
+        appointmentDate: new Date("2021-09-10"),
+        termEndDate: new Date("2024-09-10"),
+        isChairperson: false,
+        email: "a.frempong@ppa.gov.gh",
+        qualifications: "MA Development Studies",
+        experience: "12 years in civil society advocacy"
+      }
+    ],
+    
+    financialReports: [
+      {
+        year: 2024,
+        quarter: 3,
+        revenue: 12000000,
+        expenses: 10500000,
+        profit: 1500000,
+        assets: 120000000,
+        liabilities: 35000000,
+        equity: 85000000,
+        cashFlow: 2800000,
+        auditor: "Audit Service Ghana",
+        auditOpinion: "UNQUALIFIED"
+      },
+      {
+        year: 2023,
+        revenue: 42000000,
+        expenses: 38000000,
+        profit: 4000000,
+        assets: 115000000,
+        liabilities: 32000000,
+        equity: 83000000,
+        cashFlow: 5200000,
+        auditor: "Audit Service Ghana",
+        auditOpinion: "UNQUALIFIED"
+      },
+      {
+        year: 2022,
+        revenue: 38000000,
+        expenses: 35000000,
+        profit: 3000000,
+        assets: 110000000,
+        liabilities: 30000000,
+        equity: 80000000,
+        cashFlow: 4500000,
+        auditor: "Audit Service Ghana",
+        auditOpinion: "UNQUALIFIED"
+      }
+    ],
+    
+    itInfrastructure: [
+      {
+        category: "PROCUREMENT_PLATFORM",
+        name: "e-Procurement System",
+        vendor: "Local Tech Hub",
+        version: "3.0",
+        annualCost: 2500000,
+        hasDataCenter: true,
+        dataCenterLocation: "Accra",
+        hasDisasterRecovery: true,
+        drLocation: "Kumasi",
+        serverCount: 8,
+        storageCapacity: 25,
+        securityCertifications: "ISO 27001, ISO 9001, PCI DSS"
+      },
+      {
+        category: "DOCUMENT_MANAGEMENT",
+        name: "Document Management System",
+        vendor: "Microsoft",
+        version: "SharePoint 2023",
+        annualCost: 800000,
+        hasDataCenter: false,
+        hasDisasterRecovery: true,
+        drLocation: "Accra",
+        cloudProvider: "Microsoft Azure",
+        serverCount: 4,
+        storageCapacity: 15,
+        securityCertifications: "ISO 27001"
+      },
+      {
+        category: "ANALYTICS_PLATFORM",
+        name: "Business Intelligence Suite",
+        vendor: "Tableau",
+        version: "2023.3",
+        annualCost: 600000,
+        hasDataCenter: false,
+        hasDisasterRecovery: false,
+        cloudProvider: "AWS",
+        storageCapacity: 8,
+        securityCertifications: "ISO 27001"
+      },
+      {
+        category: "COMPLIANCE_SYSTEM",
+        name: "Compliance Monitoring System",
+        vendor: "AuditTech Ghana",
+        version: "2.1",
+        annualCost: 450000,
+        hasDataCenter: false,
+        hasDisasterRecovery: true,
+        drLocation: "Accra",
+        cloudProvider: "Google Cloud",
+        storageCapacity: 5,
+        securityCertifications: "ISO 27001, SOC 2"
+      }
+    ],
+    
+    softwareLicenses: [
+      {
+        softwareName: "e-Procurement Platform",
+        vendor: "Local Tech Hub",
+        licenseType: "SUBSCRIPTION",
+        totalLicenses: 500,
+        usedLicenses: 450,
+        annualCost: 2500000,
+        expiryDate: new Date("2025-12-31"),
+        sharable: false,
+        consolidationOpportunity: false
+      },
+      {
+        softwareName: "Microsoft Office 365",
+        vendor: "Microsoft",
+        licenseType: "SUBSCRIPTION",
+        totalLicenses: 350,
+        usedLicenses: 340,
+        annualCost: 420000,
+        expiryDate: new Date("2025-06-30"),
+        sharable: false,
+        consolidationOpportunity: true
+      },
+      {
+        softwareName: "Tableau Server",
+        vendor: "Tableau",
+        licenseType: "SUBSCRIPTION",
+        totalLicenses: 50,
+        usedLicenses: 45,
+        annualCost: 600000,
+        expiryDate: new Date("2024-12-31"),
+        sharable: true,
+        consolidationOpportunity: true
+      },
+      {
+        softwareName: "Adobe Creative Suite",
+        vendor: "Adobe",
+        licenseType: "SUBSCRIPTION",
+        totalLicenses: 25,
+        usedLicenses: 20,
+        annualCost: 150000,
+        expiryDate: new Date("2025-03-31"),
+        sharable: false,
+        consolidationOpportunity: true
+      }
+    ]
+  },
   // ENERGY SECTOR - Enhanced with comprehensive data
   {
     entityId: "SOE-001",
